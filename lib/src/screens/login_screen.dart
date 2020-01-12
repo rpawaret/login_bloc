@@ -21,12 +21,18 @@ class LoginScreen extends StatelessWidget {
 }
 
 Widget emailField() {
-  return TextField(
-    keyboardType: TextInputType.emailAddress,
-    decoration: InputDecoration(
-      hintText: 'you@example.com',
-      labelText: 'Email',
-    ),
+  return StreamBuilder(
+    stream: bloc.email,
+    builder: (context, snapshot) {
+      return TextField(
+        keyboardType: TextInputType.emailAddress,
+        decoration: InputDecoration(
+            hintText: 'you@example.com',
+            labelText: 'Email',
+            errorText: snapshot.error),
+        onChanged: bloc.changeEmail,
+      );
+    },
   );
 }
 
