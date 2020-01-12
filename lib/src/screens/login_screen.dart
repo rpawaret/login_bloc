@@ -37,9 +37,18 @@ Widget emailField() {
 }
 
 Widget passwordField() {
-  return TextField(
-    obscureText: false,
-    decoration: InputDecoration(hintText: 'Password', labelText: 'Password'),
+  return StreamBuilder(
+    stream: bloc.password,
+    builder: (context, snapshot) {
+      return TextField(
+        obscureText: false,
+        decoration: InputDecoration(
+            hintText: 'Password',
+            labelText: 'Password',
+            errorText: snapshot.error),
+        onChanged: bloc.changePassword,
+      );
+    },
   );
 }
 
