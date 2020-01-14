@@ -59,13 +59,12 @@ Widget submitButton(Bloc bloc) {
       stream: bloc.submitValid,
       builder: (context, snapshot) {
         return RaisedButton(
-          child: Text('Login'),
-          color: Colors.blue,
-          onPressed: snapshot.hasError
-              ? null
-              : () {
-                  print('hi there!');
-                },
-        );
+            child: Text('Login'),
+            color: Colors.blue,
+            onPressed: snapshot.hasData
+                ? () {
+                    print('hi there!');
+                  }
+                : null);
       });
 }
